@@ -21,6 +21,7 @@ function deleteCard (card) {
 
     card.remove(); 
 }
+
 // @todo: Вывести карточки на страницz
 initialCards.forEach((item) => {
     placesList.append(addCard(item, deleteCard))
