@@ -9,6 +9,7 @@ function addCard (element, deleteCard) {
 
     cardElement.querySelector('.card__title').textContent = element.name;
     cardElement.querySelector('.card__image').src = element.link;
+    cardElement.querySelector('.card__image').alt = element.name;
 
     deleteButton.addEventListener('click', function() {
         deleteCard(cardElement);
