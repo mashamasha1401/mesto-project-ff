@@ -15,9 +15,11 @@
 
  // Закрытие модалального окна по Esc
  const closeEsc = (evt) => {
-    if (evt.key === 'Esc' || evt.key === 'Escape' || evt.keyCode === 27) {
+    if (evt.key === 'Escape') {
         const openedModal = document.querySelector('.popup_is-opened');
-        closeModal(openedModal);
+        if (openedModal) {
+            closeModal(openedModal);
+        }
     };
  };
 

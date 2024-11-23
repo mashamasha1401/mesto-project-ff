@@ -1,14 +1,16 @@
 import './index.css'; 
-import './cards.js'; 
-import { initialCards } from './cards.js';
+import '../components/cards.js'; 
+import { initialCards } from '../components/cards.js';
 import { openModal, closeModal, closeEsc, closeOverlay } from '../components/modal.js';
 import { addCard, deleteCard, likeCard, /*openPopupTypeImage*/ } from '../components/card.js';
 
 //DOM узлы
 const placesList = document.querySelector('.places__list');
+
+//Модальное окно с фото и подписью 
 const popupTypeImage = document.querySelector('.popup_type_image');
-const popupImage = document.querySelector('.popup__image');
-const popupCaption = document.querySelector('.popup__caption');
+const popupTypeImageImage = document.querySelector('.popup__image');
+const popupTypeImageCaption = document.querySelector('.popup__caption');
 
 //редактирование
 const editButton = document.querySelector('.profile__edit-button');
@@ -53,11 +55,10 @@ newCard_form.addEventListener ('submit', newCard_create);
 
 //открытие модального окна с фото и подписью
 function openPopupTypeImage (evt) {
-    popupImage.src = evt.target.src;
-    popupImage.alt = evt.target.alt;
-    popupCaption.textContent = evt.target.alt;
+    popupTypeImageImage.src = evt.target.src;
+    popupTypeImageImage.alt = evt.target.alt;
+    popupTypeImageCaption.textContent = evt.target.alt;
     openModal(popupTypeImage);
-
 };
 closeOverlay(popupTypeImage);
 
