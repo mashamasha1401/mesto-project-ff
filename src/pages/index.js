@@ -54,10 +54,10 @@ const newCard_form = document.forms['new-place'];
 newCard_form.addEventListener ('submit', newCard_create); 
 
 //открытие модального окна с фото и подписью
-function openPopupTypeImage (evt) {
-    popupTypeImageImage.src = evt.target.src;
-    popupTypeImageImage.alt = evt.target.alt;
-    popupTypeImageCaption.textContent = evt.target.alt;
+function openPopupTypeImage (Name, Link) {
+    popupTypeImageImage.src = Link;
+    popupTypeImageImage.alt = Name;
+    popupTypeImageCaption.textContent = Name;
     openModal(popupTypeImage);
 };
 closeOverlay(popupTypeImage);
@@ -69,14 +69,14 @@ const popupJobInput = document.querySelector('.popup__input_type_description');
 const profileTitle = document.querySelector('.profile__title');
 const profileDescription = document.querySelector('.profile__description');
 
-function handleFormSubmit(evt) {
+function handleProfileFormSubmit(evt) {
     evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
     profileTitle.textContent = popupNameInput.value;
     profileDescription.textContent = popupJobInput.value;
     closeModal(popupEdit);
 };
 
-profileformElement.addEventListener ('submit', handleFormSubmit); //Прикрепляем обработчик к форме:он будет следить за событием “submit” - «отправка»
+profileformElement.addEventListener ('submit', handleProfileFormSubmit); //Прикрепляем обработчик к форме:он будет следить за событием “submit” - «отправка»
 
 editButton.addEventListener('click', () => {
     openModal(popupEdit);
