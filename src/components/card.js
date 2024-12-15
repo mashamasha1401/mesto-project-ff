@@ -48,5 +48,5 @@ function likeCard (evt) {
 };
 
 
-export { addCard, deleteCard, likeCard, /*openPopupTypeImage*/ };
+export { addCard, deleteCard, likeCard };
 

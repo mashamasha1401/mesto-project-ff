@@ -1,8 +1,12 @@
 import './index.css'; 
 import '../components/cards.js'; 
+import { enableValidation, clearValidation } from '../components/validation.js'
 import { initialCards } from '../components/cards.js';
 import { openModal, closeModal, closeEsc, closeOverlay } from '../components/modal.js';
 import { addCard, deleteCard, likeCard, /*openPopupTypeImage*/ } from '../components/card.js';
+
+
+
 
 //DOM узлы
 const placesList = document.querySelector('.places__list');
@@ -82,7 +86,23 @@ editButton.addEventListener('click', () => {
     openModal(popupEdit);
     popupNameInput.value = profileTitle.textContent;
     popupJobInput.value = profileDescription.textContent;
+    clearValidation(popupEdit , validationConfig);
 });
 
 closeOverlay(popupEdit);
 
+
+//7
+
+const validationConfig = {
+    formSelector: '.popup__form',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__button',
+    inactiveButtonClass: 'popup__button_disabled',
+    inputErrorClass: 'popup__input_type_error',
+    errorClass: 'popup__error_visible'
+};
+
+  enableValidation(validationConfig);
+
+export {validationConfig};
