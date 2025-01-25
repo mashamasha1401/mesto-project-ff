@@ -33,11 +33,11 @@
   display: inline-block;
   margin-bottom: 10px;
   opacity: 0;
+  
 } 
 
 .popup__error_visible {
   display: block;
   opacity: 1;
 }
-
 
