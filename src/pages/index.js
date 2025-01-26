@@ -66,33 +66,21 @@ let userId ;
 Promise.all([getUsers(), getCards()])
 .then(([userData, cardsData]) => {
     userId = userData._id;
-    
     profileTitle.textContent = userData.name;
     profileDescription.textContent = userData.about;
     profileImage.style.backgroundImage = `url(${userData.avatar})`;
-
-    /*
-    cardsData.forEach((item) => {
-        placesList.append(addCard(item, deleteCard, likeCard, openPopupTypeImage ,userId ))
-    });*/
-    //console.log(cardsData);
     cardsData.forEach((element) => {
-        //console.log('test5');
         const newCard = addCard(element,likeCard,deleteCard,openPopupTypeImage,userId);
-        
         placesList.append(newCard);
-        //console.log('test4')
     });
   })
   .catch((err) => {
     console.log(err);
-  })
+  });
 
 //Функция создания новой карточки
 function newCard_create (evt) {
-    
     evt.preventDefault();
-    
     newCardSaveButton.textContent="Сохранение...";
     postNewCard(newCard_NameInput.value,newCard_LinkInput.value)
         .then((res) => {
@@ -108,23 +96,9 @@ function newCard_create (evt) {
         .finally(() => {
             newCardSaveButton.textContent = "Сохранить";
         })
-
-    /*
-    const dataset = {
-        name: newCard_NameInput.value,
-        link: newCard_LinkInput.value,
-    };
-
-    const newCard_popup = addCard (dataset , deleteCard, likeCard, openPopupTypeImage);
-    
-    placesList.prepend(newCard_popup);
-    closeModal(popupNewCard);
-    evt.target.reset();
-    */
  };
 
 //слушатель кнопки создания нью карточки
-
 newCard_form.addEventListener ('submit', newCard_create); 
 
 //открытие модального окна с большим фото и подписью
@@ -137,35 +111,22 @@ function openPopupTypeImage (Name, Link) {
 closeOverlay(popupTypeImage);
 
 //РЕДАКТИРОВАНИЕ ПРОФИЛЯ
-
-
-//открытие формы редактирования профиля
-function handleProfileFormSubmit(evt) {
-    evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-    profileTitle.textContent = popupNameInput.value;
-    profileDescription.textContent = popupJobInput.value;
-    closeModal(popupEdit);
-};
-
-//Прикрепляем обработчик к форме:он будет следить за событием “submit” - «отправка»
-profileformElement.addEventListener ('submit', handleProfileFormSubmit); 
-
-//кнопка сохраниить изменения описания профиля
+//обработка открытие попапа редактирования профиля
 editButton.addEventListener('click', (evt) => {
-    evt.preventDefault();
-    openModal(popupEdit);
     popupNameInput.value = profileTitle.textContent;
     popupJobInput.value = profileDescription.textContent;
     clearValidation(popupEdit , validationConfig);
+    openModal(popupEdit);
 });
 
+//функция редактирования профиля
 function editProfile(evt)  {
-    evt.preventDefault;
+    evt.preventDefault();
     editPopupButton.textContent= "Сохранение...";
-    patchEditProfile(profileTitle.textContent, profileDescription.textContent)
-        .then(() => {
-            profileTitle.textContent = popupNameInput.value;
-            profileDescription.textContent = popupJobInput.value;
+    patchEditProfile(popupNameInput.value, popupJobInput.value)
+        .then((data) => {
+            profileTitle.textContent = data.name;
+            profileDescription.textContent = data.about;
             closeModal(popupEdit);
         })
         .catch((error) => {
@@ -176,6 +137,7 @@ function editProfile(evt)  {
         });
 };
 
+//слушатель кнопки сохранить на форме редактирования профиля
 profileformElement.addEventListener("submit", editProfile);
 
 closeOverlay(popupEdit);
@@ -205,19 +167,15 @@ closeOverlay(popupTypeEditAvatar);
 function editAvatar(evt) {
     evt.preventDefault();
     editAvatarButton.textContent= "Сохранение...";
-    console.log('test 2');
     patchEditAvatar(editAvatarInputUrl.value)
         .then((res) => {
-            console.log('test 6');
             profileImage.style.backgroundImage = `url(${res.avatar})`;
             closeModal(popupTypeEditAvatar);
-            console.log('test 7');
         })
         .catch((error) => {
             console.error(error);
         })
         .finally(() => {
-            console.log('test 8');
             editAvatarButton.textContent = "Сохранить";
         });
 };
