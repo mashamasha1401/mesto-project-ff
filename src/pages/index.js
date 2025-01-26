@@ -7,7 +7,6 @@ import { addCard, deleteCard, likeCard /*openPopupTypeImage*/ } from '../compone
 import { getUsers, getCards, postNewCard, patchEditProfile, deleteCardOnPage, patchEditAvatar} from '../components/api.js';
 
 
-
 //DOM узлы
 const placesList = document.querySelector('.places__list');
 
@@ -47,10 +46,6 @@ const validationConfig = {
     inputErrorClass: 'popup__input_type_error',
     errorClass: 'popup__error_visible'
 };
-/*
-initialCards.forEach((item) => {
-    placesList.append(addCard(item, deleteCard, likeCard, openPopupTypeImage ))
-});*/
 
 //КАРТОЧКИ
 addButton.addEventListener('click', () => {
