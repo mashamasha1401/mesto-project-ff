@@ -102,6 +102,9 @@ function newCard_create (evt) {
             clearValidation(newCard_form, validationConfig);
             closeModal(popupNewCard);
         })
+        .catch((error) => {
+            console.error(error);
+          })
         .finally(() => {
             newCardSaveButton.textContent = "Сохранить";
         })
