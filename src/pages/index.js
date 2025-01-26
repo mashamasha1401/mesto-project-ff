@@ -104,7 +104,7 @@ function newCard_create (evt) {
         })
         .catch((error) => {
             console.error(error);
-          })
+        })
         .finally(() => {
             newCardSaveButton.textContent = "Сохранить";
         })
@@ -168,6 +168,9 @@ function editProfile(evt)  {
             profileDescription.textContent = popupJobInput.value;
             closeModal(popupEdit);
         })
+        .catch((error) => {
+            console.error(error);
+        })
         .finally(() => {
             editPopupButton.textContent = "Сохранить";
         });
@@ -209,6 +212,9 @@ function editAvatar(evt) {
             profileImage.style.backgroundImage = `url(${res.avatar})`;
             closeModal(popupTypeEditAvatar);
             console.log('test 7');
+        })
+        .catch((error) => {
+            console.error(error);
         })
         .finally(() => {
             console.log('test 8');
