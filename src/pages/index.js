@@ -49,6 +49,8 @@ const validationConfig = {
 
 //КАРТОЧКИ
 addButton.addEventListener('click', () => {
+    newCard_form.reset();
+    clearValidation(newCard_form, validationConfig);
     openModal(popupNewCard);
 });
 
@@ -108,9 +110,10 @@ closeOverlay(popupTypeImage);
 //РЕДАКТИРОВАНИЕ ПРОФИЛЯ
 //обработка открытие попапа редактирования профиля
 editButton.addEventListener('click', (evt) => {
+    profileformElement.reset();
     popupNameInput.value = profileTitle.textContent;
     popupJobInput.value = profileDescription.textContent;
-    clearValidation(popupEdit , validationConfig);
+    clearValidation(profileformElement , validationConfig);
     openModal(popupEdit);
 });
 
@@ -138,7 +141,6 @@ profileformElement.addEventListener("submit", editProfile);
 closeOverlay(popupEdit);
 
 //редактирование аватара
-//const profileformElement = document.forms['edit-profile'];
 const formEditAvatar = document.forms['edit-avatar'];
 const popupTypeEditAvatar = document.querySelector('.popup_type_edit_avatar');
 const editAvatarInput = popupTypeEditAvatar.querySelector('.popup__input_type_url_avatar');
@@ -148,7 +150,6 @@ const profileImageContainer = document.querySelector('.profile_image__container'
 
 //слушатель клика по аватарке
 profileImageContainer.addEventListener('click', () => {
-
     editAvatarInput.value= ' ';
     clearValidation(popupTypeEditAvatar, validationConfig);
     openModal(popupTypeEditAvatar);
