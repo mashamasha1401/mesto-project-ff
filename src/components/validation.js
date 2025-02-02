@@ -55,16 +55,6 @@ const hasInvalidInput = (inputList) => {
     return !inputElement.validity.valid;
     });
 };
-/*
-const toggleButtonState = (inputList, buttonElement, validationConfig) => {
-    if (hasInvalidInput(inputList)) {
-      buttonElement.classList.add(validationConfig.inactiveButtonClass);
-      buttonElement.disabled = true;
-    } else {
-      buttonElement.classList.remove(validationConfig.inactiveButtonClass);
-      buttonElement.disabled = false;
-    }
-};*/
 
 const toggleButtonState = (inputList, buttonElement, validationConfig) => {
   // Проверяем, что все поля валидны и заполнены
