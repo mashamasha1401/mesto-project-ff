@@ -8,12 +8,6 @@ import {deleteCardOnPage, putLikeCard, deleteLikeCard} from '../components/api.j
 const cardTemplate = document.querySelector('#card-template').content;
 
 
-// @todo: Функция удаления карточки изменяем функцию
-//8. Удаление карточки
-
-
-
-
 //Функция создания карточки
 function addCard (element, likeCard, deleteCard, openPopupTypeImage , userId) {
     const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
@@ -28,10 +22,10 @@ function addCard (element, likeCard, deleteCard, openPopupTypeImage , userId) {
     cardElement.querySelector('.card__image').alt = element.name;
     likeCounter.textContent = element.likes.length;
 
-    const NameCard = element.name;
-    const LinkCard = element.link;
+    const nameCard = element.name;
+    const linkCard = element.link;
     const cardImage = cardElement.querySelector('.card__image');
-    cardImage.addEventListener('click', () => openPopupTypeImage(NameCard,LinkCard));
+    cardImage.addEventListener('click', () => openPopupTypeImage(nameCard,linkCard));
 
     // вызов функции лайка    
     likeButton.addEventListener('click', (evt) => {
@@ -44,13 +38,11 @@ function addCard (element, likeCard, deleteCard, openPopupTypeImage , userId) {
         likeCounter.textContent = "0";
     };
 
-
     if (element.likes.some((like) => like._id == userId)) {
         //console.log("test1");
         likeButton.classList.add("card__like-button_is-active");
         //console.log("test2");
     };
-
 
     //удаление
     if (element.owner._id === userId) {
@@ -60,8 +52,6 @@ function addCard (element, likeCard, deleteCard, openPopupTypeImage , userId) {
         } else {
             deleteButton.remove();
     };
-
-
     return cardElement;
 };
 
@@ -74,7 +64,6 @@ function deleteCard (element, cardElement) {
             console.log(err);
         })
 };
-
 
 //7. Отображение количества лайков карточки
 function likeCard (evt, cardId, likeCounter) {

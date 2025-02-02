@@ -48,7 +48,8 @@ const validationConfig = {
 };
 
 //КАРТОЧКИ
-addButton.addEventListener('click', () => {
+addButton.addEventListener('click', (evt) => {
+    evt.preventDefault();
     newCard_form.reset();
     clearValidation(newCard_form, validationConfig);
     openModal(popupNewCard);

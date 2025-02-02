@@ -77,7 +77,7 @@ const postNewCard = (newName, newLink) => {
     })
     .then(getResponseData);
  };
- deleteCardOnPage();
+
 
  //9. Постановка и снятие лайка
 const putLikeCard = (cardId) => {

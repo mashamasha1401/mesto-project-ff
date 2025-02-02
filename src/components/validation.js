@@ -55,15 +55,27 @@ const hasInvalidInput = (inputList) => {
     return !inputElement.validity.valid;
     });
 };
-  
+/*
 const toggleButtonState = (inputList, buttonElement, validationConfig) => {
     if (hasInvalidInput(inputList)) {
-      buttonElement.disabled = true;
       buttonElement.classList.add(validationConfig.inactiveButtonClass);
+      buttonElement.disabled = true;
     } else {
-      buttonElement.disabled = false;
       buttonElement.classList.remove(validationConfig.inactiveButtonClass);
+      buttonElement.disabled = false;
     }
+};*/
+
+const toggleButtonState = (inputList, buttonElement, validationConfig) => {
+  // Проверяем, что все поля валидны и заполнены
+  const allFieldsFilled = inputList.every(input => input.value.trim() !== '');
+  if (hasInvalidInput(inputList) || !allFieldsFilled) {
+      buttonElement.classList.add(validationConfig.inactiveButtonClass);
+      buttonElement.disabled = true;
+  } else {
+      buttonElement.classList.remove(validationConfig.inactiveButtonClass);
+      buttonElement.disabled = false;
+  }
 };
   
 const clearValidation = (formElement, validationConfig) => {
@@ -74,7 +86,7 @@ const clearValidation = (formElement, validationConfig) => {
         hideInputError(formElement, inputElement, validationConfig);
         toggleButtonState(inputList, buttonElement, validationConfig);
         //buttonElement.classList.add(validationConfig.inactiveButtonClass);
-        //buttonElement.disabled = true;
+        //buttonElement.disabled = false;
     });
 };
 
